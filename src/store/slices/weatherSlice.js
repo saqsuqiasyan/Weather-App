@@ -4,7 +4,7 @@ import { API_KEY } from "../apiKey"
 const initialState = {
     error:null,
     loading:false,
-    data:{}
+    data:null
 }
 
 export const fetchWeather = createAsyncThunk("weather/getWeather",async (cityName)=>{
