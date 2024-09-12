@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchWeather } from "./store/slices/weatherSlice";
+import  Header  from './components/header/Header'
+import  Main from './components/main/Main'
+
 
 function App() {
+
+  const dispatch = useDispatch()
+  const { data, loading, error } = useSelector(state => state.weather)
+
+  useEffect(()=>{
+    dispatch(fetchWeather("Yerevan"))
+  },[dispatch])
+
+  console.log(data)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header/>
+      <Main/>
     </div>
   );
 }
